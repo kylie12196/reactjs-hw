@@ -1,0 +1,21 @@
+.app {
+  font-family: $font-family-base;
+  background-color: $backgroundMain;
+
+  &__header {
+    padding: $pading-large;
+    border: 2px solid $colorBorder;
+    border-bottom: none;
+  }
+
+  &__main {
+    padding: $pading-large;
+    border: 2px solid $colorBorder;
+    min-height: 50vh;
+  }
+}
+
+.title {
+  font-size: $font-size-medium;
+  font-weight: $font-weight-bold;
+}
