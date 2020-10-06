@@ -1,0 +1,72 @@
+// ======================================================
+// Base :: Button
+// ======================================================
+
+.btn {
+  min-width: 100px;
+  height: 40px;
+  border-radius: 4px;
+  border: none;
+  font-size: 16px;
+  color: $white;
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+    color: $white;
+  }
+
+  &:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:disabled,
+  &.disabled {
+    &:hover,
+    &:focus {
+      cursor: default;
+    }
+  }
+
+  &--edit {
+    background-color: $green;
+
+    &:hover,
+    &:active {
+      background-color: rgba($green, .6);
+    }
+
+    &:focus {
+      background-color: rgba($green, 1.2);
+    }
+  }
+
+  &--delete {
+    background-color: $red;
+
+    &:hover,
+    &:active {
+      background-color: rgba($red, .6);
+    }
+
+    &:focus {
+      background-color: rgba($red, 1.2);
+    }
+  }
+
+  &--cancel {
+    background-color: $gray;
+
+    &:hover,
+    &:active {
+      background-color: rgba($gray, .6);
+      color: $white;
+    }
+
+    &:focus {
+      background-color: rgba($gray, 1.2);
+    }
+  }
+}

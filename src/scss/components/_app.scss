@@ -1,21 +1,101 @@
+// ======================================================
+// Component :: App
+// ======================================================
+
 .app {
   font-family: $font-family-base;
-  background-color: $backgroundMain;
-
-  &__header {
-    padding: $pading-large;
-    border: 2px solid $colorBorder;
-    border-bottom: none;
-  }
+  padding: $pading-medium;
 
   &__main {
-    padding: $pading-large;
-    border: 2px solid $colorBorder;
+    padding: 0;
     min-height: 50vh;
+    display: flex;
+  }
+
+  &__header {
+    padding: 0 $pading-large;
   }
 }
 
 .title {
   font-size: $font-size-medium;
   font-weight: $font-weight-bold;
+}
+
+.header {
+  justify-content: space-between;
+
+  @include flex-items-center;
+
+  &__time {
+    font-size: $font-size-medium;
+    font-weight: $font-weight-bold;
+
+    span {
+      padding: 0 $pading-small;
+    }
+  }
+}
+
+.list,
+.details {
+  flex: 0 50%;
+  padding: $pading-small $pading-large;
+}
+
+.list {
+  &__add {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: $pading-medium 0;
+  }
+}
+
+.item {
+  width: 100%;
+
+  &__edit,
+  &__delete {
+    opacity: 0;
+    margin-left: 16px;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__name,
+  &__email {
+    font-size: $font-size-medium;
+  }
+
+  &:hover {
+    .item__edit,
+    .item__delete {
+      opacity: 1;
+    }
+  }
+
+  &--edit {
+    &__edit,
+    &__delete {
+      &:hover {
+        opacity: 0;
+      }
+    }
+
+    &:hover {
+      .item__edit,
+      .item__delete {
+        opacity: 0;
+      }
+    }
+  }
 }

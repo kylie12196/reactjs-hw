@@ -1,11 +1,13 @@
 import React from 'react';
 import '../../scss/main.scss';
+import Header from '../layout/header';
+import Main from '../layout/main';
 
 function App() {
   return (
     <div className="app">
-      <div className="app__header title">Header</div>
-      <div className="app__main title">Body</div>
+      <Header />
+      <Main />
     </div>
   );
 }
