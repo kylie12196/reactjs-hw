@@ -1,7 +1,7 @@
-
 // 1. Abstracts
 // ------------
 
+@import '~bootstrap/scss/bootstrap.scss';
 @import '../scss/abstracts/variables';
 @import '../scss/abstracts/mixin';
 
@@ -10,6 +10,8 @@
 
 @import '../scss/base/color';
 @import '../scss/base/global';
+@import '../scss/base/input';
+@import '../scss/base/button';
 
 // 3. Page
 // -------
