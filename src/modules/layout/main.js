@@ -6,20 +6,10 @@ class Main extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      users: [
-        {
-          name: 'Pham Nguyet',
-          email: 'pham.thi.minh.nguyet@sun-asterisk.com',
-          id: '1'
-        },
-        {
-          name: 'Pham Nguyet',
-          email: 'phamminhnguyet96@gmail.com',
-          id: '2'
-        },
-      ],
+      users: [],
       show: false,
       isEdit: false,
+      isAdd: false,
       keyEdit: 3,
       currentUser: {
         name: '',
@@ -31,6 +21,7 @@ class Main extends React.Component {
 
   addUser = () => {
     this.setState({
+      isAdd: true,
       show: true,
       isEdit: true,
     });
@@ -47,8 +38,14 @@ class Main extends React.Component {
     this.setState({
       show: true,
       isEdit: true,
-      idEdit: key.idEdit
+      idEdit: key.id,
+      currentUser: {
+        name: key.name,
+        email: key.email,
+        id: key.id
+      }
     });
+    localStorage.setItem('users', JSON.stringify(this.state.users));
   }
 
   deleteUser = (key) => {
@@ -59,23 +56,49 @@ class Main extends React.Component {
       isEdit: false,
       idDelete: key.idDelete
     });
+    localStorage.setItem('users', JSON.stringify(this.state.users));
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
+    if (localStorage.getItem('users') !== '') {
+      this.setState({
+        users: JSON.parse(localStorage.getItem('users')),
+      });
+    } else {
+      localStorage.setItem('users', JSON.stringify(this.state.users));
+    }
   }
 
   submitForm = (data) => {
-    this.setState({
-      users: [...this.state.users,
-        {
-          name: data.name,
-          email: data.email,
-          id: this.state.keyEdit +1
-        }
-      ],
-      show: false,
-      isEdit: false,
-    });
+    if (this.state.currentUser.id === this.state.idEdit) {
+      let users = this.state.users
+      let index = this.state.users.findIndex(item => item.id === data.id)
+      let userEdit = {id: data.id, name: data.name, email: data.email}
+
+      this.setState({
+        show: false,
+        isEdit: false,
+        isAdd: false,
+      });
+      users[index] = userEdit;
+    } else {
+      const user =  {
+        name: data.name,
+        email: data.email,
+        id: this.state.users.length + 1
+      };
+      this.setState({
+        show: false,
+        isEdit: false,
+        isAdd: false,
+      });
+      this.state.users.push(user);
+    }
+    localStorage.setItem('users', JSON.stringify(this.state.users));
+  }
+
+  onActive = (e) => {
+    console.log(e);
   }
 
   render() {
@@ -88,6 +111,7 @@ class Main extends React.Component {
             clickShow={() => this.addUser()}
             edit={this.editUser}
             delete={this.deleteUser}
+            onHoverItems= {this.onActive}
           />
         </div>
         <div className='details'>
